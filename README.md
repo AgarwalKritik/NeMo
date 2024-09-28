@@ -469,6 +469,11 @@ To install Apex, run the following code:
 git clone https://github.com/NVIDIA/apex.git
 cd apex
 git checkout $apex_commit
+
+# if pip >= 23.1 (ref: https://pip.pypa.io/en/stable/news/#v23-1) which supports multiple `--config-settings` with the same key... 
+pip install . -v --no-build-isolation --no-cache-dir --disable-pip-version-check --config-settings="build_option=--cpp_ext" --config-settings="build_option=--cuda_ext" --config-settings="build_option=--fast_layer_norm" --config-settings="build_option=--distributed_adam" --config-settings="build_option=--deprecated_fused_adam" --config-settings="build_option=--group_norm"
+
+# otherwise
 pip install . -v --no-build-isolation --disable-pip-version-check --no-cache-dir --config-settings "--build-option=--cpp_ext --cuda_ext --fast_layer_norm --distributed_adam --deprecated_fused_adam --group_norm"
 ```
 
